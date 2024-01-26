@@ -14,10 +14,11 @@ chordsline = {
   \mychords
 }
 
-intro = {d2 d4 d4 | a'2 a4 a4}
-verse = {d,2 d4 d4 | f2 f4 f4 | c2 c4 c4}
-chorus = {bes'2 bes4 bes4 | f2 f4 f4 | es2 es4 es4 | a2 a4 a4} 
-outro = {d1}
+intro = {d4 d8 d8 r8 d8 d8 d8| a'4 a8 a8 r8 a8 a8 a8}
+verse = {d,4 d8 d8 r8 d8 d8 d8 | f4 f8 f8 r8 f8 f8 f8 | c4 c8 c8 r8 c8 c8 c8}
+chorus = {bes'4 bes8 bes8 r8 bes8 bes8 bes8 | ees,4 ees8 ees8 r8 ees8 ees8 ees8 | 
+          f4 f8 f8 r8 f8 f8 f8 | a4 a8 a8 r8 a8 a8 a8} 
+outro = {a8 a8 b g a f d4}
 
 \score{
 <<
@@ -32,14 +33,14 @@ outro = {d1}
 
 \score {
   <<
-  
   \chords{
     \repeat unfold 2 {d1:m a1:m} 
     \repeat unfold 2 {d1:m f1 c1} 
-    \repeat unfold 2 {bes1 f1/a es a:m} 
+    \repeat unfold 2 {bes1 es f1:7/a a:m} 
   }
   \new Staff {
     \relative  c'{
+  \tempo 4 = 90
       \key d \minor
       %\sectionLabel "Intro"
       \mark \markup{"Intro"}
@@ -58,14 +59,30 @@ outro = {d1}
       \mark \markup{"Chorus"}
       \repeat unfold 2 {\chorus}
       }
+      %\sectionLabel "Verse"
+      \repeat volta 2 {
+      \bar ":|.|:"
+      \mark \markup{"Verse"}
+      \repeat unfold 2 {\verse}
+      }
+      %\sectionLabel "Chorus"
+      \repeat volta 2 {
+      \bar ":|.|:"
+      \mark \markup{"Chorus"}
+      \repeat unfold 2 {\chorus}
+      }
+      \mark \markup{"Outro"}
+      \outro
     }
   }
   \new Staff {
     \relative {
     \clef bass
+    \key d \minor
     \repeat unfold 2 {d4 f a4 e4 | a, c a' f} 
-    \repeat unfold 3 {d4 f a4 e4 | a, c a' f} 
-    \repeat unfold 4 {d4 f a4 e4 | a, c a' f} 
+    \repeat unfold 2 {d4 f a4 e4 | f, c' a f | c' c a' f} 
+    \repeat unfold 2 {bes,4 bes bes4 bes4 | ees ees ees ees | a, a a a | a a a a} 
+    d1
     }
   }
   >>
